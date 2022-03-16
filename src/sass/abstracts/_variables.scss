@@ -1,3 +1,44 @@
 /* ********* */
 /* @VARIABLES */
 /* ********* */
+
+// COLORES
+$colorTexto: #8D8E93;
+
+$coloresVerdesPlanos: (
+    superoscuro: #2C5271,
+    oscuro: #509A9D,
+    medio: #70C197,
+    normal: #93DF9A,
+    suave: #D5F2D3
+);
+
+$coloresVerdesDegradados: (
+    degradado1: #315C78,
+    degradado2: #488E9A,
+
+    degradado3: #55A29E,
+    degradado4: #6BB899,
+
+    degradado5: #8CDA97,
+    degradado6: #78C69B,
+
+    degradado7: #85D39A,
+    degradado8: #5DA49D,
+
+    degradado9: #C4E9C9,
+    degradado10: #82C7A1
+
+);
+
+// Circulo
+@for $i from 1 through 5 {
+    .circulo#{$i}{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: linear-gradient(to right, 
+        map-get($coloresVerdesDegradados, degradado#{$i}), 
+        map-get($coloresVerdesDegradados, degradado#{$i+1}) );
+    }
+}
