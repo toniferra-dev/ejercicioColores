@@ -3,42 +3,57 @@
 /* ********* */
 
 // COLORES
-$colorTexto: #8D8E93;
+$colorTexto: #8d8e93;
 
 $coloresVerdesPlanos: (
-    superoscuro: #2C5271,
-    oscuro: #509A9D,
-    medio: #70C197,
-    normal: #93DF9A,
-    suave: #D5F2D3
+    superoscuro: #2c5271,
+    oscuro: #509a9d,
+    medio: #70c197,
+    normal: #93df9a,
+    suave: #d5f2d3,
 );
 
 $coloresVerdesDegradados: (
-    degradado1: #315C78,
-    degradado2: #488E9A,
-
-    degradado3: #55A29E,
-    degradado4: #6BB899,
-
-    degradado5: #8CDA97,
-    degradado6: #78C69B,
-
-    degradado7: #85D39A,
-    degradado8: #5DA49D,
-
-    degradado9: #C4E9C9,
-    degradado10: #82C7A1
-
+    degradado1: #315c78,
+    degradado2: #488e9a,
+    degradado3: #55a29e,
+    degradado4: #6bb899,
+    degradado5: #8cda97,
+    degradado6: #78c69b,
+    degradado7: #85d39a,
+    degradado8: #5da49d,
+    degradado9: #c4e9c9,
+    degradado10: #82c7a1,
 );
 
 // Circulo
+$siguiente: 0;
 @for $i from 1 through 5 {
-    .circulo#{$i}{
+    .circulo#{$i} {
         width: 150px;
         height: 150px;
         border-radius: 50%;
-        background: linear-gradient(to right, 
-        map-get($coloresVerdesDegradados, degradado#{$i}), 
-        map-get($coloresVerdesDegradados, degradado#{$i+1}) );
+        background: linear-gradient(
+            to right,
+            map-get($coloresVerdesDegradados, degradado#{$i + $siguiente}),
+            map-get($coloresVerdesDegradados, degradado#{$i + 1 + $siguiente})
+        );
+
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    // contador para saltar de dos a dos posiciones de colores
+    $siguiente: $siguiente + 1;
+}
+
+// Rectangulo
+$contador: 0;
+@each $color in map-keys($coloresVerdesPlanos) {
+    $contador: $contador + 1;
+    .rectangulo#{$contador} {
+        width: 100%;
+        height: 100%;
+        border-radius: 50vh;
+        background: map-get($coloresVerdesPlanos, $color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
 }
